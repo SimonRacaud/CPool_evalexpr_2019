@@ -47,6 +47,10 @@ Test(evalexpr, evalexp5)
     char str[23] = "-2";
     int ret = eval_expr(str);
 
+<<<<<<< HEAD
+=======
+    printf("#5: %d \n", ret);
+>>>>>>> c9c8952bb1edd639f125941f80e25bd662880db6
     cr_assert(ret == -2);
 }
 
@@ -55,6 +59,10 @@ Test(evalexpr, evalexp6)
     char str[23] = "-2+2";
     int ret = eval_expr(str);
 
+<<<<<<< HEAD
+=======
+    printf("#6: %d \n", ret);
+>>>>>>> c9c8952bb1edd639f125941f80e25bd662880db6
     cr_assert(ret == 0);
 }
 
@@ -63,6 +71,10 @@ Test(evalexpr, evalexp7)
     char str[23] = "0%0";
     int ret = eval_expr(str);
 
+<<<<<<< HEAD
+=======
+    printf("#7: %d \n", ret);
+>>>>>>> c9c8952bb1edd639f125941f80e25bd662880db6
     cr_assert(ret == 0);
 }
 
@@ -71,6 +83,7 @@ Test(evalexpr, evalexp8)
     char str[23] = "0/0";
     int ret = eval_expr(str);
 
+<<<<<<< HEAD
     cr_assert(ret == 0);
 }
 */
@@ -85,4 +98,26 @@ Test(evalexpr, evalexp9)
     printf("RESULTAT: %d \n", ret);
     cr_assert(ret == -744629760);
     //cr_assert(ret == -2);
+=======
+    printf("#8: %d \n", ret);
+    cr_assert(ret == 0);
+}
+
+Test(evalexpr, evalexp9)
+{
+    char str[23] = "(-2)";
+    int ret = eval_expr(str);
+
+    printf("#9: %d \n", ret);
+    cr_assert(ret == -2);
+}
+*/
+Test(evalexpr, evalexp10)
+{
+    char str[23] = "(2*(1-2))";
+    int ret = eval_expr(str);
+
+    printf("#10: %d \n", ret);
+    cr_assert(ret == -2);
+>>>>>>> c9c8952bb1edd639f125941f80e25bd662880db6
 }

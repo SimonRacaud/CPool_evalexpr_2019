@@ -22,16 +22,33 @@ int operation_lenght(char *ops, char operator)
 {
     int op_len = 0;
     int op = 0;
-    int nb_or_point = 1;
+    int nb = 1;
+    int point = 1;
+    int nb2 = 0;
 
-    while (nb_or_point == 1 || op == 0) {
-        if (ops[op_len] == operator)
+    while (nb == 1 || point == 1 || op == 0) {
+        if (ops[op_len] == operator) {
             op++;
+            nb2 = 0;
+        }
         op_len++;
-        if ((ops[op_len] <= '9' && ops[op_len] >= '0') || ops[op_len] == '.')
-            nb_or_point = 1;
-        else
-            nb_or_point = 0;
+        if (ops[op_len] <= '9' && ops[op_len] >= '0') {
+            nb = 1;
+            point = 0;
+            nb2 = 1;
+        } else if (ops[op_len] == '.') {
+            nb = 0;
+            point = 1;
+        } else {
+            if (nb2 == 1) {
+                nb = 0;
+                point = 0;
+            } else {
+                nb = 0;
+                point = 0;
+                op = 0;
+            }
+        }
     }
     return op_len;
 }
@@ -55,11 +72,15 @@ char *make_the_operation(char *seg, int operator, int begin)
 int detect_sign(char *seg)
 {
     int sign = 0;
+    int i = 0;
 
-    if (seg[1] == '+')
-        sign = 1;
-    if (seg[1] == '-')
-        sign = 1;
+    while (seg[i] > '9' || seg[i] < '0') {
+        if (seg[i] == '+')
+            sign = i;
+        if (seg[i] == '-')
+            sign = i;
+        i++;
+    }
     return sign;
 }
 
@@ -70,13 +91,12 @@ char *operator_seeker(char *seg, int seg_lenght, int operator)
     int sig = detect_sign(seg);
 
     for (int i = 1; i < seg_lenght - 1; i++) {
-        if (seg[i] == operator_list[operator] && sig != 1) {
+        if (seg[i] == operator_list[operator] && sig != i) {
             seg = make_the_operation(seg, operator, begin);
             i = 0;
             begin = 0;
-        } else if ((seg[i] > '9' || seg[i] < '0') && seg[i] != '.' && sig != 1)
+        } else if ((seg[i] > '9' || seg[i] < '0') && seg[i] != '.' && sig != i)
             begin = i + 1;
-        sig = 0;
     }
     if (operator < 5)
         seg = operator_seeker(seg, seg_lenght, operator + 1);
