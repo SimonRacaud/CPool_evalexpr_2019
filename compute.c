@@ -21,9 +21,10 @@ static int determine_operator(char *operation)
     int idx = 0;
 
     for (int i = 0; i < 5; i++) {
-        if (my_strstr(operation, operators[idx++]) != NULL) {
+        if (my_strstr(operation, operators[idx]) != NULL) {
             return (idx);
         }
+        idx++;
     }
     return (84);
 }
@@ -34,9 +35,9 @@ static void write_result(char *operation, int result)
     int len_result = my_strlen(result_str);
     int i = len_result;
 
-    my_strcpy(operation, result_str);
+    my_strncpy(operation, result_str, len_result);
     while (operation[i] != '\0')
-        operation[i] = '.';
+        operation[i++] = '.';
     free(result_str);
 }
 

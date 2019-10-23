@@ -6,8 +6,9 @@
 */
 
 #include  <criterion/criterion.h>
+#include <stdio.h>
 
-char *compute(char *operation)
+char *compute(char *operation);
 
 Test(evalexpr, compute1)
 {

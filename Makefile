@@ -39,7 +39,7 @@ test_combop:
 	rm -f *.gcno
 
 test_compute:
-	gcc -W -Wall tests/test_compute.c compute.c --coverage -lcriterion -o test.out -L./lib/my -lmy -I./include/ && ./test.out
+	gcc -W -g -Wall tests/test_compute.c my_putnbr_str.c compute.c operators.c --coverage -lcriterion -o test.out -L./lib/my -lmy -I./include/ && ./test.out
 	rm ./test.out
 	rm -f *.gcda
 	rm -f *.gcno
