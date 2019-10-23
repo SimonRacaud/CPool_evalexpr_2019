@@ -11,14 +11,16 @@ SRC	=	main.c			\
 		combine_operators.c	\
 		operators.c		\
 		compute.c		\
-		my_putnbr_str.c
+		my_putnbr_str.c		\
+		operator_seeker.c
 
 TEST	=	eval_expr.c             \
 		parenthesis_seeker.c    \
 		combine_operators.c     \
 		operators.c             \
 		compute.c               \
-		my_putnbr_str.c
+		my_putnbr_str.c		\
+		operator_seeker.c
 
 OBJ	=	$(SRC:.c=.o)
 
