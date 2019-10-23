@@ -107,7 +107,6 @@ flycheck_*.el
 
 ### OTHERS
 NormEZ.rb
-tests/
 *.gcda
 *.gcno
 
