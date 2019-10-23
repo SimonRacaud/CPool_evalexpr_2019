@@ -12,13 +12,13 @@ int parenthesis_seeker(char *str);
 int eval_expr(char const *str)
 {
     char *expr = my_strdup(str);
-    int result;
     int ret;
+    int result;
 
-    do {
-        ret = parenthesis_seeker(expr);
-    } while (ret != 0);
-
+    ret = parenthesis_seeker(expr);
+    if (ret != 0)
+        my_putstr("ERROR : parenthesis_seeker() \n");
+    result = my_getnbr(expr);
     free(expr);
-    return 0;
+    return (result);
 }
