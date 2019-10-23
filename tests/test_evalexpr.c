@@ -13,36 +13,32 @@ char *parenthesis_seeker(char *str);
 Test(evalexpr, parentesis_seeker)
 {
     char str[23] = "((2*3+5)*(10*(20-2)/5))";
-    char *ret = parenthesis_seeker(str);
+    char *res = parenthesis_seeker(str);
 
-    printf("Res: %s \n", str);
-    cr_assert_str_eq(ret, "..330....................");
+    cr_assert_str_eq(res, "..330....................");
 }
 
 Test(evalexpr, parentesis_seeker2)
 {
     char str[23] = "((3+2)*5)";
-    char *ret = parenthesis_seeker(str);
+    char *res = parenthesis_seeker(str);
 
-    printf("Res: %s \n", str);
-    cr_assert_str_eq(ret, "..25.......");
+    cr_assert_str_eq(res, "..25.......");
 }
 
 Test(evalexpr, parentesis_seeker3)
 {
     char str[23] = "(2*3+5)*(10*(20-2)/5)";
-    char *ret = parenthesis_seeker(str);
+    char *res = parenthesis_seeker(str);
 
-    printf("Res: %s \n", str);
-    cr_assert_str_eq(ret, ".330...................");
+    cr_assert_str_eq(res, ".330...................");
 }
 
 
 Test(evalexpr, parentesis_seeker4)
 {
     char str[23] = "(3+2)*5";
-    char *ret = parenthesis_seeker(str);
+    char *res = parenthesis_seeker(str);
 
-    printf("Res: %s \n", str);
-    cr_assert_str_eq(ret, ".25......");
+    cr_assert_str_eq(res, ".25......");
 }

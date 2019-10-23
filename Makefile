@@ -42,17 +42,15 @@ re:	fclean all
 test_combop:
 	gcc -W -Wall tests/test_combop.c combine_operators.c --coverage -lcriterion -o test.out -L./lib/my -lmy -I./include/ && ./test.out
 	rm ./test.out
-	rm -f *.gcda
-	rm -f *.gcno
 
 test_compute:
 	gcc -W -g -Wall tests/test_compute.c my_putnbr_str.c compute.c operators.c --coverage -lcriterion -o test.out -L./lib/my -lmy -I./include/ && ./test.out
 	rm ./test.out
-	rm -f *.gcda
-	rm -f *.gcno
 
-test_evalexpr:
-	gcc -W -g -Wall tests/test_evalexpr.c $(TEST) --coverage -lcriterion -o test.out -L./lib/my -lmy -I./include/ && ./test.out
+test_parseek:
+	gcc -W -g -Wall tests/test_parseek.c $(TEST) --coverage -lcriterion -o test.out -L./lib/my -lmy -I./include/ && ./test.out
 	rm test.out
-	rm -f *.gcda
-	rm -f *.gcno
+
+test_global:
+	gcc -W -g -Wall tests/test_global.c $(TEST) --coverage -lcriterion -o test.out -L./lib/my -lmy -I./include/ && ./test.out
+	rm test.out
