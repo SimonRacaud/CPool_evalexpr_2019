@@ -5,24 +5,28 @@
 ** Test File
 */
 
-
+#include <stdio.h>
 #include  <criterion/criterion.h>
+
+int parenthesis_seeker(char *str);
 
 Test(evalexpr, parentesis_seeker)
 {
     char str[23] = "(2*3+5)*(10*(20-2)/5)";
     int ret = parenthesis_seeker(str);
 
-    cr_assert_str_eq(str, "11.....*(10*(20-2)/5)");
+    printf("Res: %s \n", str);
+    cr_assert_str_eq(str, "396..................");
     cr_assert(ret == 1);
 }
 
 
-Test(evalexpr, parentesis_seeker)
+Test(evalexpr, parentesis_seeker2)
 {
-    char str[23] = "11.....*(10*(20-2)/5)";
+    char str[23] = "(3+2)*5";
     int ret = parenthesis_seeker(str);
 
-    cr_assert_str_eq(str, "11.....*(10*18..../5)");
+    printf("Res: %s \n", str);
+    cr_assert_str_eq(str, "25.....");
     cr_assert(ret == 1);
 }
