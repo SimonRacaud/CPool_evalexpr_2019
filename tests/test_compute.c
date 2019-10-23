@@ -33,3 +33,11 @@ Test(evalexpr, compute3)
 
     cr_assert_str_eq(str, "11.");
 }
+
+Test(evalexpr, compute4)
+{
+    char str[23] = "6-5";
+    compute(str);
+
+    cr_assert_str_eq(str, "1..");
+}

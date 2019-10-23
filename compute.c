@@ -55,7 +55,7 @@ char *compute(char *operation)
         return (NULL);
     }
     a = my_getnbr(operation);
-    b = my_getnbr(my_strstr(operation, operators[idx_op]));
+    b = my_getnbr(my_strstr(operation, operators[idx_op]) + 1);
     result = OP[idx_op](a, b);
     write_result(operation, result);
     return (operation);
