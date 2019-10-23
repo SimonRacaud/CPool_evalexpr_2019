@@ -79,7 +79,7 @@ char *operator_seeker(char *seg, int seg_lenght, int operator)
     return seg;
 }
 
-void add_parenthesis(char *str)
+char *add_parenthesis(char *str)
 {
     char *temp = malloc(sizeof(char) * my_strlen(str) + 2);
 
@@ -87,24 +87,16 @@ void add_parenthesis(char *str)
     temp[my_strlen(str) + 1] = ')';
     temp[my_strlen(str) + 2] = '\0';
     my_strncpy(&temp[1], str, my_strlen(str));
-    printf("STR BEFORE : %s\n", str);
-    printf("TEMP BEFORE : %s\n", temp);
-    str = temp;
-    printf("TEMP AFTER : %s\n", temp);
-    printf("STR AFTER : %s\n", str);
-    //free(temp);
-    printf("STR : %s\n", str);
+    return temp;
 }
 
-int parenthesis_seeker(char *str)
+char *parenthesis_seeker(char *str)
 {
-    //printf("STR BEFORE : %s\n", str);
     int open_par = 0;
     char *seg;
     int seg_lenght = 0;
 
-    add_parenthesis(str);
-    //printf("STR MIDDLE : %s\n", str);
+    str = add_parenthesis(str);
     for (int i = 0; i < my_strlen(str); i++) {
         if (str[i] == '(') {
             open_par = i;
@@ -119,6 +111,5 @@ int parenthesis_seeker(char *str)
         }
     }
     free(seg);
-    //printf("STR AFTER : %s\n", str);
-    return 1;
+    return str;
 }
