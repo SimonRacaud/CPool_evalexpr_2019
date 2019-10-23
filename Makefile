@@ -9,6 +9,8 @@ SRC	=	main.c			\
 		eval_expr.c		\
 		parenthesis_seeker.c	\
 		combine_operators.c	\
+		operators.c		\
+		compute.c		\
 
 OBJ	=	$(SRC:.c=.o)
 
