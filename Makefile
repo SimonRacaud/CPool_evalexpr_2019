@@ -11,6 +11,7 @@ SRC	=	main.c			\
 		combine_operators.c	\
 		operators.c		\
 		compute.c		\
+		my_putnbr_str.c		\
 
 OBJ	=	$(SRC:.c=.o)
 

@@ -5,6 +5,7 @@
 ** File that contain the main function of the project
 */
 
+#include <stdlib.h>
 #include "my.h"
 
 int parenthesis_seeker(char *str);
