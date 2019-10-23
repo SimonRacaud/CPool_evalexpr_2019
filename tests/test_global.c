@@ -9,7 +9,7 @@
 #include  <criterion/criterion.h>
 
 int eval_expr(char const *str);
-
+/*
 Test(evalexpr, evalexp1)
 {
     char str[23] = "((2*3+5)*(10*(20-2)/5))";
@@ -60,7 +60,7 @@ Test(evalexpr, evalexp6)
     char str[23] = "-2+2";
     int ret = eval_expr(str);
 
-    printf("#5: %d \n", ret);
+    printf("#6: %d \n", ret);
     cr_assert(ret == 0);
 }
 
@@ -69,7 +69,7 @@ Test(evalexpr, evalexp7)
     char str[23] = "0%0";
     int ret = eval_expr(str);
 
-    printf("#5: %d \n", ret);
+    printf("#7: %d \n", ret);
     cr_assert(ret == 0);
 }
 
@@ -78,7 +78,7 @@ Test(evalexpr, evalexp8)
     char str[23] = "0/0";
     int ret = eval_expr(str);
 
-    printf("#5: %d \n", ret);
+    printf("#8: %d \n", ret);
     cr_assert(ret == 0);
 }
 
@@ -88,5 +88,14 @@ Test(evalexpr, evalexp9)
     int ret = eval_expr(str);
 
     printf("#9: %d \n", ret);
+    cr_assert(ret == -2);
+}
+*/
+Test(evalexpr, evalexp10)
+{
+    char str[23] = "(2*(1-2))";
+    int ret = eval_expr(str);
+
+    printf("#10: %d \n", ret);
     cr_assert(ret == -2);
 }

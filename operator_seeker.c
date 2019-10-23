@@ -24,20 +24,30 @@ int operation_lenght(char *ops, char operator)
     int op = 0;
     int nb = 1;
     int point = 1;
+    int nb2 = 0;
 
     while (nb == 1 || point == 1 || op == 0) {
-        if (ops[op_len] == operator)
+        if (ops[op_len] == operator) {
             op++;
+            nb2 = 0;
+        }
         op_len++;
         if (ops[op_len] <= '9' && ops[op_len] >= '0') {
             nb = 1;
             point = 0;
+            nb2 = 1;
         } else if (ops[op_len] == '.') {
             nb = 0;
             point = 1;
         } else {
-            nb = 0;
-            point = 0;
+            if (nb2 == 1) {
+                nb = 0;
+                point = 0;
+            } else {
+                nb = 0;
+                point = 0;
+                op = 0;
+            }
         }
     }
     return op_len;
