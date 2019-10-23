@@ -7,7 +7,8 @@
 
 SRC	=	main.c			\
 		eval_expr.c		\
-		parenthesis_seeker.c
+		parenthesis_seeker.c	\
+		combine_operators.c	\
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -27,3 +28,6 @@ fclean:	clean
 	rm -f $(NAME)
 
 re:	fclean all
+
+test_combop:
+	gcc -W -Wall tests/test_ combop.c --coverage -lcriterion -o test.out -L./lib/my -lmy -I./include/ && ./test.out
