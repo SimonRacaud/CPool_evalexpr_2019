@@ -5,15 +5,15 @@
 ** Combine a row of +/- symbols in one
 */
 
-static void replace_symbols(char *ptr, int nb_symb, char symb) {
-    int i = 0;
-
-    for (int i = 1; i < nb_symbol; i++)
+static void replace_symbols(char *ptr, int nb_symb, char symb)
+{
+    for (int i = 1; i < nb_symb; i++)
         *(ptr - i) = '.';
-    *(ptr - nb_symbol) = symb;
+    *(ptr - nb_symb) = symb;
 }
 
-static void check_char(char *ptr, int *count_neg, int *count_symb) {
+static void check_char(char *ptr, int *count_neg, int *count_symb)
+{
     if (*ptr == '+' || *ptr == '-') {
         if (*ptr == '-')
             (*count_neg)++;

@@ -30,4 +30,7 @@ fclean:	clean
 re:	fclean all
 
 test_combop:
-	gcc -W -Wall tests/test_ combop.c --coverage -lcriterion -o test.out -L./lib/my -lmy -I./include/ && ./test.out
+	gcc -W -Wall tests/test_combop.c combine_operators.c --coverage -lcriterion -o test.out -L./lib/my -lmy -I./include/ && ./test.out
+	rm ./test.out
+	rm -f *.gcda
+	rm -f *.gcno
