@@ -44,9 +44,9 @@ int operation_lenght(char *ops, char operator)
                 nb = 0;
                 point = 0;
             } else {
-                nb = 0;
-                point = 0;
-                op = 0;
+                nb = 1;
+                point = 1;
+                op = 1;
             }
         }
     }

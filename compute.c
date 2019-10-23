@@ -22,7 +22,7 @@ char *my_putnbr_str(int nb);
 
 static int determine_operator(char *operation)
 {
-    char *operators[5] = {"+", "-", "*", "/", "%"};
+    char *operators[5] = {"%", "/", "*", "+", "-"};
     int idx = 0;
 
     while (*operation != '\0') {

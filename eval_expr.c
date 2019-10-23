@@ -31,6 +31,7 @@ int eval_expr(char const *str)
     int result;
 
     combine_operators(expr);
+    printf("Before p seeker\n");
     expr_res = parenthesis_seeker(expr);
     printf("Resultat str: %s \n", expr_res);
     move_minus(expr_res);
