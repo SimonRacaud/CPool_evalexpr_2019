@@ -11,25 +11,25 @@
 
 char *compute(char *operation);
 
-char *replace(char *str, char *seg, int begin, int seg_len)
+char *replace_operation(char *seg, char *operation, int begin, int op_len)
 {
-    for (int i = 0; i < seg_len; i++) {
-        if (i < my_strlen(seg)) {
-            str[begin + i] = seg[i];
+    for (int i = 0; i < op_len; i++) {
+        if (i < my_strlen(operation)) {
+            seg[begin + i] = operation[i];
         } else {
-            str[begin + i] = '.';
+            seg[begin + i] = '.';
         }
     }
-    return str;
+    return seg;
 }
 
-char *replace2(char *str, char *seg, int begin, int seg_len)
+char *replace_seg(char *str, char *seg, int open_par, int seg_len)
 {
     for (int i = 0; i < seg_len; i++) {
         if (i < my_strlen(seg) && i != 0 && i != seg_len - 1) {
-            str[begin + i] = seg[i];
+            str[open_par + i] = seg[i];
         } else {
-            str[begin + i] = '.';
+            str[open_par + i] = '.';
         }
     }
     return str;
@@ -66,7 +66,7 @@ char *operator_seeker(char *seg, int seg_lenght, int operator)
             operation = malloc(op_lenght);
             operation = my_strncpy(operation, &seg[begin], op_lenght);
             operation = compute(operation);
-            seg = replace(seg, operation, begin, op_lenght);
+            seg = replace_operation(seg, operation, begin, op_lenght);
             free(operation);
             operation = NULL;
             i = 0;
@@ -105,7 +105,7 @@ char *parenthesis_seeker(char *str)
             seg = malloc(seg_lenght);
             seg = my_strncpy(seg, &str[open_par], seg_lenght);
             seg = operator_seeker(seg, seg_lenght, 0);
-            str = replace2(str, seg, open_par, seg_lenght);
+            str = replace_seg(str, seg, open_par, seg_lenght);
             seg = NULL;
             i = -1;
         }
