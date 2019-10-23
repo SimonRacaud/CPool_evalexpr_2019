@@ -11,7 +11,14 @@ SRC	=	main.c			\
 		combine_operators.c	\
 		operators.c		\
 		compute.c		\
-		my_putnbr_str.c		\
+		my_putnbr_str.c
+
+TEST	=	eval_expr.c             \
+		parenthesis_seeker.c    \
+		combine_operators.c     \
+		operators.c             \
+		compute.c               \
+		my_putnbr_str.c
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -40,6 +47,12 @@ test_combop:
 
 test_compute:
 	gcc -W -g -Wall tests/test_compute.c my_putnbr_str.c compute.c operators.c --coverage -lcriterion -o test.out -L./lib/my -lmy -I./include/ && ./test.out
+	rm ./test.out
+	rm -f *.gcda
+	rm -f *.gcno
+
+test_evalexpr:
+	gcc -W -g -Wall tests/test_evalexpr.c $(TEST) --coverage -lcriterion -o test.out -L./lib/my -lmy -I./include/ && ./test.out
 	rm ./test.out
 	rm -f *.gcda
 	rm -f *.gcno
