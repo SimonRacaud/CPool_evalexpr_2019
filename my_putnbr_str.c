@@ -8,9 +8,9 @@
 #include <stdlib.h>
 #include "my.h"
 
-static void create_res_str(int size, char **nb_str, int nb, int *j)
+static void create_res_str(int size, char **nb_str, int is_neg, int *j)
 {
-    if (nb < 0) {
+    if (is_neg) {
         *nb_str = malloc(sizeof(char) * (size + 2));
         (*nb_str)[0] = '-';
         *j = 1;
@@ -25,12 +25,15 @@ char *my_putnbr_str(int nb)
     int j = 0;
     char *nb_str;
     char c;
+    int is_neg = 0;
 
-    if (nb < 0)
+    if (nb < 0) {
         nb *= (-1);
+        is_neg = 1;
+    }
     while (nb / my_compute_power_rec(10, i) >= 10)
         i++;
-    create_res_str(i, &nb_str, nb, &j);
+    create_res_str(i + 1, &nb_str, is_neg, &j);
     while (i >= 0) {
         c = ((nb / my_compute_power_rec(10, i)) % 10) + '0';
         nb_str[j++] = c;

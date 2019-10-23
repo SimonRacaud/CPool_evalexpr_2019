@@ -11,6 +11,19 @@
 char *parenthesis_seeker(char *str);
 void combine_operators(char *expr);
 
+static void move_minus(char *expr_res)
+{
+    int i = 0;
+
+    while (expr_res[i] != '\0') {
+        if (expr_res[i] == '-' && expr_res[i + 1] == '.') {
+            expr_res[i] = '.';
+            expr_res[i + 1] = '-';
+        }
+        i++;
+    }
+}
+
 int eval_expr(char const *str)
 {
     char *expr = my_strdup(str);
@@ -19,6 +32,9 @@ int eval_expr(char const *str)
 
     combine_operators(expr);
     expr_res = parenthesis_seeker(expr);
+    printf("Resultat str: %s \n", expr_res);
+    move_minus(expr_res);
+    printf("Resultat str: %s \n", expr_res);
     result = my_getnbr(expr_res);
     free(expr);
     free(expr_res);
