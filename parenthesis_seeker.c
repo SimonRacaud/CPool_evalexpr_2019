@@ -14,11 +14,7 @@ char *compute(char *operation);
 char *replace_operation(char *seg, char *operation, int begin, int op_len)
 {
     for (int i = 0; i < op_len; i++) {
-        if (i < my_strlen(operation)) {
-            seg[begin + i] = operation[i];
-        } else {
-            seg[begin + i] = '.';
-        }
+        seg[begin + i] = operation[i];
     }
     return seg;
 }
@@ -61,9 +57,9 @@ char *operator_seeker(char *seg, int seg_lenght, int operator)
     int op_lenght = 0;
     int var = 0;
 
-    if (operator == 3 && seg[1] == '+')
+    if (seg[1] == '+')
         var = 1;
-    if (operator == 4 && seg[1] == '-')
+    if (seg[1] == '-')
         var = 1;
     for (int i = 1; i < seg_lenght - 1; i++) {
         if (seg[i] == operator_list[operator] && var != 1) {
@@ -76,7 +72,7 @@ char *operator_seeker(char *seg, int seg_lenght, int operator)
             operation = NULL;
             i = 0;
             begin = 0;
-        } else if ((seg[i] > '9' || seg[i] < '0') && seg[i] != '.')
+        } else if ((seg[i] > '9' || seg[i] < '0') && seg[i] != '.' && var != 1)
             begin = i + 1;
         var = 0;
     }
