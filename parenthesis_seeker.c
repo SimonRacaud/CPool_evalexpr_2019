@@ -59,9 +59,14 @@ char *operator_seeker(char *seg, int seg_lenght, int operator)
     char *operation;
     int begin = 1;
     int op_lenght = 0;
+    int var = 0;
 
+    if (operator == 3 && seg[1] == '+')
+        var = 1;
+    if (operator == 4 && seg[1] == '-')
+        var = 1;
     for (int i = 1; i < seg_lenght - 1; i++) {
-        if (seg[i] == operator_list[operator]) {
+        if (seg[i] == operator_list[operator] && var != 1) {
             op_lenght = operation_lenght(&seg[begin], operator_list[operator]);
             operation = malloc(op_lenght);
             operation = my_strncpy(operation, &seg[begin], op_lenght);
@@ -73,6 +78,7 @@ char *operator_seeker(char *seg, int seg_lenght, int operator)
             begin = 0;
         } else if ((seg[i] > '9' || seg[i] < '0') && seg[i] != '.')
             begin = i + 1;
+        var = 0;
     }
     if (operator < 5)
         seg = operator_seeker(seg, seg_lenght, operator + 1);
