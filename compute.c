@@ -54,8 +54,8 @@ static void write_result(char *operation, int result)
 
 char *compute(char *operation)
 {
-    char *operators[5] = {"+", "-", "*", "/", "%"};
-    int (*OP[5])(int, int) = {&add, &sub, &mul, &divi, &mod};
+    char *operators[5] = {"%", "/", "*", "+", "-"};
+    int (*OP[5])(int, int) = {&mod, &divi, &mul, &add, &sub};
     int idx_op = determine_operator(operation);
     int a;
     int b;
@@ -65,6 +65,7 @@ char *compute(char *operation)
         return (operation);
     }
     a = my_getnbr(operation);
+    my_strstr(operation, operators[idx_op]);
     b = my_getnbr(my_strstr(operation + 1, operators[idx_op]) + 1);
     result = OP[idx_op](a, b);
     write_result(operation, result);
