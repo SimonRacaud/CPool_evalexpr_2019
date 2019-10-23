@@ -7,6 +7,8 @@
 
 #include "my.h"
 
+int eval_expr(char const *str);
+
 int main(int ac, char **av)
 {
     if (ac == 2) {

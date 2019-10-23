@@ -5,18 +5,20 @@
 ## Project makefile
 ##
 
-SRC	=	main.c	\
+SRC	=	main.c			\
+		eval_expr.c		\
+		parenthesis_seeker.c
 
 OBJ	=	$(SRC:.c=.o)
 
 NAME	=	eval_expr
 
-CFLAGS	+= -Wall -Wextra -I./../include
+CFLAGS	+= -Wall -Wextra -I./include
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	gcc -o $(NAME) $(OBJ) -L../lib/my -lmy
+	gcc -o $(NAME) $(OBJ) -L./lib/my -lmy
 
 clean:
 	rm -f  $(OBJ)
