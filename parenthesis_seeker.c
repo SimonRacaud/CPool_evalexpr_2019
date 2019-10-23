@@ -31,9 +31,9 @@ int operation_lenght(char *ops, char operator)
             op++;
         op_len++;
         if ((ops[op_len] < '9' && ops[op_len] > '0') || ops[op_len] == '.') {
-            nb_or_point == 1;
+            nb_or_point = 1;
         } else
-            nb_or_point == 0;
+            nb_or_point = 0;
     }
     return op_len;
 }
@@ -43,18 +43,18 @@ char *compute(char *operation);
 char *operator_seeker(char *seg, int seg_lenght, int operator)
 {
     char operator_list[] = "%/*+-";
-    char *operation = malloc(100);
+    char *operation;
     int begin = 1;
     int op_lenght = 0;
 
     for (int i = 1; i < seg_lenght - 1; i++) {
         if (seg[i] == operator_list[operator]) {
             op_lenght = operation_lenght(&seg[begin], operator_list[operator]);
-            //seg = malloc(op_lenght);
+            operation = malloc(op_lenght);
             operation = my_strncpy(operation, &seg[begin], op_lenght);
             operation = compute(operation);
             seg = replace(seg, operation, begin, op_lenght);
-            //seg = NULL;
+            operation = NULL;
         } else if (seg[i] > '9' || seg[i] < '0') {
             begin = i + 1;
         }
@@ -68,7 +68,7 @@ char *operator_seeker(char *seg, int seg_lenght, int operator)
 int parenthesis_seeker(char *str)
 {
     int open_par = 0;
-    char *seg = malloc(100);
+    char *seg;
     int seg_lenght = 0;
 
     for (int i = 0; i < my_strlen(str); i++) {
@@ -76,11 +76,11 @@ int parenthesis_seeker(char *str)
             open_par = i;
         } else if (str[i] == ')') {
             seg_lenght = i + 1 - open_par;
-            //seg = malloc(seg_lenght);
+            seg = malloc(seg_lenght);
             seg = my_strncpy(seg, &str[open_par], seg_lenght);
             seg = operator_seeker(seg, seg_lenght, 0);
             str = replace(str, seg, open_par, seg_lenght);
-            //seg = NULL;
+            seg = NULL;
             i = -1;
         }
     }
