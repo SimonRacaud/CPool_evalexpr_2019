@@ -10,6 +10,7 @@
 #include <stdio.h>
 
 char *compute(char *operation);
+
 void combine_operators(char *expr);
 
 char *replace_operation(char *seg, char *operation, int begin, int op_len)
@@ -34,41 +35,43 @@ int detect_sign(char *seg)
     return sign;
 }
 
+void determine_next_char(int *nb_point, int *nb_bef_op, char *ops, int op_len)
+{
+    if (ops[op_len] <= '9' && ops[op_len] >= '0') {
+        nb_point[0] = 1;
+        nb_point[1] = 0;
+        nb_bef_op[0] = 1;
+    } else if (ops[op_len] == '.') {
+        nb_point[0] = 0;
+        nb_point[1] = 1;
+    } else {
+        if (nb_bef_op[0] == 1) {
+            nb_point[0] = 0;
+            nb_point[1] = 0;
+        } else {
+            nb_point[0] = 1;
+            nb_point[1] = 1;
+        }
+    }
+}
+
 int operation_lenght(char *ops, char operator)
 {
     int op_len = 0;
     int op = 0;
-    int nb = 1;
-    int point = 1;
-    int nb2 = 0;
+    int	nb_point[2] = {1, 1};
+    int nb_before_op[1] = {0};
     int sign = detect_sign(ops);
 
-    if (sign != 0) {
+    if (sign != 0)
         op_len = sign;
-    }
-    while (nb == 1 || point == 1 || op == 0) {
+    while (nb_point[0] == 1 || nb_point[1] == 1 || op == 0) {
         if (ops[op_len] == operator) {
             op++;
-            nb2 = 0;
+            nb_before_op[0] = 0;
         }
         op_len++;
-        if (ops[op_len] <= '9' && ops[op_len] >= '0') {
-            nb = 1;
-            point = 0;
-            nb2 = 1;
-        } else if (ops[op_len] == '.') {
-            nb = 0;
-            point = 1;
-        } else {
-            if (nb2 == 1) {
-                nb = 0;
-                point = 0;
-            } else {
-                nb = 1;
-                point = 1;
-                op = 1;
-            }
-        }
+        determine_next_char(nb_point, nb_before_op, ops, op_len);
     }
     return op_len;
 }
@@ -83,9 +86,7 @@ char *make_the_operation(char *seg, int operator, int begin)
     operation = malloc(op_lenght + 1);
     operation[op_lenght] = '\0';
     operation = my_strncpy(operation, &seg[begin], op_lenght);
-    //printf("OP AVANT : %s | begin = %d\n", operation, begin);
     operation = compute(operation);
-    //printf("OP APRES : %s\n", operation);
     seg = replace_operation(seg, operation, begin, op_lenght);
     free(operation);
     operation = NULL;

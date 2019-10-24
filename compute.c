@@ -47,14 +47,10 @@ static void write_result(char *operation, int result)
     char *result_str = my_putnbr_str(result);
     int len_result = my_strlen(result_str);
     int i = len_result;
-    int POINT = 0;
 
     my_strncpy(operation, result_str, len_result);
-    while (operation[i] != '\0') {
+    while (operation[i] != '\0')
         operation[i++] = '.';
-        POINT++;
-    }
-    printf("POINT : %d\n", POINT);
     free(result_str);
 }
 
@@ -70,14 +66,9 @@ char *compute(char *operation)
     if (idx_op == 84) {
         return (operation);
     }
-
     move_minus(operation);
-    //printf("OP = %s\n", operation);
-    //printf("TEST = %d\n", my_getnbr("0a1"));
     a = my_getnbr(operation);
-    //printf("A = %d\n", a);
     b = my_getnbr(my_strstr(operation + 1, operators[idx_op]) + 1);
-    //printf("B = %d\n", b);
     result = OP[idx_op](a, b);
     write_result(operation, result);
     return (operation);

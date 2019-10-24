@@ -11,16 +11,12 @@
 
 char *replace_seg(char *str, char *seg, int open_par, int seg_len)
 {
-    //printf("STR                =       %s\n", str);
-    //printf("SEG                =       %s\n", seg);
     for (int i = 0; i < seg_len; i++) {
         if (i < my_strlen(seg) && i != 0 && i != seg_len - 1)
             str[open_par + i] = seg[i];
         else
             str[open_par + i] = '.';
     }
-    //printf("STR         AP       =       %s\n", str);
-    //printf("SEG         AP       =       %s\n", seg);
     return str;
 }
 
@@ -43,7 +39,6 @@ char *parenthesis_seeker(char *str)
     char *seg;
     int seg_lenght = 0;
 
-    //printf("FIRST STR : %s\n", str);
     str = add_parenthesis(str);
     for (int i = 0; i < my_strlen(str); i++) {
         if (str[i] == '(') {
@@ -53,16 +48,10 @@ char *parenthesis_seeker(char *str)
             seg = malloc(seg_lenght + 1);
             seg[seg_lenght] = '\0';
             seg = my_strncpy(seg, &str[open_par], seg_lenght);
-            //printf("SEG AVANT = %s &&& SEG LEN = %d\n", seg, seg_lenght);
             seg = operator_seeker(seg, seg_lenght, 0);
-            printf("SEG = %s\n", seg);
-            //printf("STR AV : %s\n", str);
             str = replace_seg(str, seg, open_par, seg_lenght);
-            //printf("STR AP : %s\n", str);
             seg = NULL;
             i = -1;
-            printf("STR : %s\n", str);
-            //printf("STR ? : %d\n", str[19]);
         }
     }
     free(seg);
