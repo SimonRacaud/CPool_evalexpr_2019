@@ -14,9 +14,11 @@ static void create_res_str(int size, char **nb_str, int is_neg, int *j)
         *nb_str = malloc(sizeof(char) * (size + 2));
         (*nb_str)[0] = '-';
         *j = 1;
-    } else
+        (*nb_str)[size + 1] = '\0';
+    } else {
         *nb_str = malloc(sizeof(char) * (size + 1));
-    (*nb_str)[size] = '\0';
+        (*nb_str)[size] = '\0';
+    }
 }
 
 char *my_putnbr_str(int nb)

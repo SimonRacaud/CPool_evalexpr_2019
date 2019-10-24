@@ -72,7 +72,7 @@ static void get_data_nbr(char const *str, int *i_first_nbr, int *size_nbr)
     while (*(str + i) != '\0') {
         if (*i_first_nbr != -1 && *(str + i) >= '0' && *(str + i) <= '9') {
             (*size_nbr)++;
-        } else if (*(str + i) >= '1' && *(str + i) <= '9') {
+        } else if (*(str + i) >= '0' && *(str + i) <= '9') {
             *i_first_nbr = i;
             (*size_nbr)++;
         }

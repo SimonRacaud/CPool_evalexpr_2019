@@ -97,27 +97,28 @@ char *operator_seeker(char *seg, int seg_lenght, int operator)
     char operator_list[] = "%/*+-";
     int begin = 1;
     int sig = detect_sign(seg);
+    int VAR = 0;
 
     for (int i = 1; i < seg_lenght - 1; i++) {
-        if (seg[i] == operator_list[operator] && sig != i) {
-            //printf("SEG AVANT : %s\n", seg);
-            seg = make_the_operation(seg, operator, begin);
-            //printf("SEG APRES : %s\n", seg);
-            //printf("I = %d\n", i);
+        if (seg[i] == operator_list[operator]) {
+            VAR = 1;
+        } else if (seg[i] == operator_list[operator + 1]) {
+            VAR = 2;
+        } else if (operator == 0 && seg[i] == operator_list[operator + 2]) {
+            VAR = 3;
+        }
+        if (VAR > 0 && sig != i) {
+            seg = make_the_operation(seg, operator + VAR - 1, begin);
             i = 0;
-            begin = 0;
+            begin = 1;
             sig = detect_sign(seg);
             combine_operators(seg);
-        } else if ((seg[i] > '9' || seg[i] < '0') && seg[i] != '.' && sig != i && seg[i] != '-') {
-            printf("SEG = %s\n", seg);
-            printf("I = %d\n", i);
-            printf("SEG LEN = %d\n", my_strlen(seg));
-            printf("SEG 13 = %d\n", seg[13]);
-            printf("SEG I = [%c]\n", seg[i]);
+        } else if ((seg[i] > '9' || seg[i] < '0') && seg[i] != '.' && sig != i) {
             begin = i + 1;
         }
+        VAR = 0;
     }
-    if (operator < 5)
-        seg = operator_seeker(seg, seg_lenght, operator + 1);
+    if (operator < 2)
+        seg = operator_seeker(seg, seg_lenght, operator + 3);
     return seg;
 }
