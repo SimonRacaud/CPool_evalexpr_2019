@@ -9,13 +9,13 @@
 #include  <criterion/criterion.h>
 
 int eval_expr(char const *str);
-/*
+
 Test(evalexpr, evalexp1)
 {
     char str[23] = "((2*3+5)*(10*(20-2)/5))";
     int ret = eval_expr(str);
 
-    cr_assert(ret == 330);
+    cr_assert(ret == 396);
 }
 
 Test(evalexpr, evalexp2)
@@ -77,7 +77,7 @@ Test(evalexpr, evalexp8)
 
     cr_assert(ret == 0);
 }
-*/
+
 Test(evalexpr, evalexp9)
 {
     char str[90] = "-(12*(13+15/5*(6/(12+14%(30%5+(10*25)-46)+16)-20)/43)*20)*(-(12-98*42)*(16+63-50/3))";
@@ -103,7 +103,7 @@ Test(evalexpr, evalexp9)
     //cr_assert(ret == -12);
 }
 
-/*
+
 Test(evalexpr, evalexp10)
 {
     char str[23] = "(-(((2))))";
@@ -126,8 +126,7 @@ Test(evalexpr, evalexp12)
 {
     char str[8] = "1+1";
     int ret = eval_expr(str);
-.
+
     printf("#12: %d \n", ret);
     cr_assert(ret == 2);
 }
-*/
