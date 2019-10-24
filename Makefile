@@ -12,7 +12,8 @@ SRC	=	main.c			\
 		operators.c		\
 		compute.c		\
 		my_putnbr_str.c		\
-		operator_seeker.c
+		operator_seeker.c	\
+		make_operation.c
 
 TEST	=	eval_expr.c             \
 		parenthesis_seeker.c    \
@@ -20,7 +21,8 @@ TEST	=	eval_expr.c             \
 		operators.c             \
 		compute.c               \
 		my_putnbr_str.c		\
-		operator_seeker.c
+		operator_seeker.c	\
+		make_operation.c
 
 OBJ	=	$(SRC:.c=.o)
 

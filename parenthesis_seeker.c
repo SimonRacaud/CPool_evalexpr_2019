@@ -9,7 +9,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-char *replace_seg(char *str, char *seg, int open_par, int seg_len)
+char *operator_seeker(char *seg, int seg_lenght, int prio);
+
+static char *replace_seg(char *str, char *seg, int open_par, int seg_len)
 {
     for (int i = 0; i < seg_len; i++) {
         if (i < my_strlen(seg) && i != 0 && i != seg_len - 1)
@@ -20,9 +22,7 @@ char *replace_seg(char *str, char *seg, int open_par, int seg_len)
     return str;
 }
 
-char *operator_seeker(char *seg, int seg_lenght, int operator);
-
-char *add_parenthesis(char *str)
+static char *add_parenthesis(char *str)
 {
     char *temp = malloc(sizeof(char) * my_strlen(str) + 3);
 
