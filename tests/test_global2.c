@@ -82,15 +82,16 @@ Test(evalexpr, evalexp8)
 Test(evalexpr, evalexp9)
 {
     //char str[90] = "-(12*(13+15/5*(6/(12+14%(30%5+(10*25)-46)+16)-20)/43)*20)*(-(12-98*42)*(16+63-50/3))";
-    char str[90] = "(-(12-98*42)*(16+63-50/3))";
+    char str[90] = "(-12*20)/43)*20)";
+    //char str[90] = "(-(12-98*42)*(16+63-50/3))"; // ok
     //char str[90] = "(-(3)*(4))";
     //char str[90] = "(4*(-1))";
     //char str[90] = "((-2))"; // OK
     int ret = eval_expr(str);
 
     printf("RESULTAT: %d \n", ret);
-    //cr_assert(ret == -744629760);
-    cr_assert(ret == -12);
+    cr_assert(ret == -744629760);
+    //cr_assert(ret == -12);
 }
 /*
 Test(evalexpr, evalexp10)

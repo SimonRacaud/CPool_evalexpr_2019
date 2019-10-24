@@ -32,3 +32,11 @@ Test(evalexpr, combineop3)
 
     cr_assert_str_eq(str, "+.(3+..5)*(10-....5)");
 }
+
+Test(evalexpr, combineop4)
+{
+    char str[23] = "-.-3";
+    combine_operators(str);
+
+    cr_assert_str_eq(str, "..+3");
+}

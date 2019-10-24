@@ -10,6 +10,7 @@
 #include <stdio.h>
 
 char *compute(char *operation);
+void combine_operators(char *expr);
 
 char *replace_operation(char *seg, char *operation, int begin, int op_len)
 {
@@ -62,7 +63,7 @@ char *make_the_operation(char *seg, int operator, int begin)
     op_lenght = operation_lenght(&seg[begin], operator_list[operator]);
     operation = malloc(op_lenght);
     operation = my_strncpy(operation, &seg[begin], op_lenght);
-    printf("BEFORE OP : %s\n",operation);
+    printf("BEFORE OP : %s  | op len: %d \n",operation, op_lenght);
     operation = compute(operation);
     printf("AFTER OP : %s\n",operation);
     seg = replace_operation(seg, operation, begin, op_lenght);
@@ -95,16 +96,17 @@ char *operator_seeker(char *seg, int seg_lenght, int operator)
     for (int i = 1; i < seg_lenght - 1; i++) {
         if (seg[i] == operator_list[operator] && sig != i) {
             seg = make_the_operation(seg, operator, begin);
+            printf("i: %d \n", i);
             i = 0;
             begin = 0;
             sig = detect_sign(seg);
-            printf("INFINI\n");
+            combine_operators(seg);
+            printf("seg : %s\n", seg);
+            printf("sig : %d\n", sig);
         } else if ((seg[i] > '9' || seg[i] < '0') && seg[i] != '.' && sig != i)
             begin = i + 1;
-        printf("seg : %s\n", seg);
-        printf("sig : %d\n", sig);
     }
-    printf("INFINI2\n");
+    //printf("INFINI2\n");
     if (operator < 5)
         seg = operator_seeker(seg, seg_lenght, operator + 1);
     return seg;
