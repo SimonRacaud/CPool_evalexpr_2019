@@ -24,7 +24,7 @@ char *operator_seeker(char *seg, int seg_lenght, int operator);
 
 char *add_parenthesis(char *str)
 {
-    char *temp = malloc(sizeof(char) * my_strlen(str) + 2);
+    char *temp = malloc(sizeof(char) * my_strlen(str) + 3);
 
     temp[0] = '(';
     temp[my_strlen(str) + 1] = ')';
@@ -46,9 +46,12 @@ char *parenthesis_seeker(char *str)
             open_par = i;
         } else if (str[i] == ')') {
             seg_lenght = i + 1 - open_par;
-            seg = malloc(seg_lenght);
+            seg = malloc(seg_lenght + 1);
+            seg[seg_lenght] = '\0';
             seg = my_strncpy(seg, &str[open_par], seg_lenght);
+            printf("SEG AVANT = %s &&& SEG LEN = %d\n", seg, seg_lenght);
             seg = operator_seeker(seg, seg_lenght, 0);
+            printf("SEG APRES = %s\n", seg);
             str = replace_seg(str, seg, open_par, seg_lenght);
             seg = NULL;
             i = -1;

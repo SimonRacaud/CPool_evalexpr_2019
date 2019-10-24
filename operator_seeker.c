@@ -19,6 +19,21 @@ char *replace_operation(char *seg, char *operation, int begin, int op_len)
     return seg;
 }
 
+int detect_sign(char *seg)
+{
+    int sign = 0;
+    int i = 0;
+
+    while (seg[i] > '9' || seg[i] < '0') {
+        if (seg[i] == '+')
+            sign = i;
+        if (seg[i] == '-')
+            sign = i;
+        i++;
+    }
+    return sign;
+}
+
 int operation_lenght(char *ops, char operator)
 {
     int op_len = 0;
@@ -26,7 +41,11 @@ int operation_lenght(char *ops, char operator)
     int nb = 1;
     int point = 1;
     int nb2 = 0;
+    int sign = detect_sign(ops);
 
+    if (sign != 0) {
+        op_len = sign;
+    }
     while (nb == 1 || point == 1 || op == 0) {
         if (ops[op_len] == operator) {
             op++;
@@ -61,30 +80,16 @@ char *make_the_operation(char *seg, int operator, int begin)
     char *operation;
 
     op_lenght = operation_lenght(&seg[begin], operator_list[operator]);
-    operation = malloc(op_lenght);
+    operation = malloc(op_lenght + 1);
+    operation[op_lenght] = '\0';
     operation = my_strncpy(operation, &seg[begin], op_lenght);
-    printf("BEFORE OP : %s  | op len: %d \n",operation, op_lenght);
+    //printf("OP AVANT : %s | begin = %d\n", operation, begin);
     operation = compute(operation);
-    printf("AFTER OP : %s\n",operation);
+    //printf("OP APRES : %s\n", operation);
     seg = replace_operation(seg, operation, begin, op_lenght);
     free(operation);
     operation = NULL;
     return seg;
-}
-
-int detect_sign(char *seg)
-{
-    int sign = 0;
-    int i = 0;
-
-    while (seg[i] > '9' || seg[i] < '0') {
-        if (seg[i] == '+')
-            sign = i;
-        if (seg[i] == '-')
-            sign = i;
-        i++;
-    }
-    return sign;
 }
 
 char *operator_seeker(char *seg, int seg_lenght, int operator)
@@ -95,18 +100,23 @@ char *operator_seeker(char *seg, int seg_lenght, int operator)
 
     for (int i = 1; i < seg_lenght - 1; i++) {
         if (seg[i] == operator_list[operator] && sig != i) {
+            //printf("SEG AVANT : %s\n", seg);
             seg = make_the_operation(seg, operator, begin);
-            printf("i: %d \n", i);
+            //printf("SEG APRES : %s\n", seg);
+            //printf("I = %d\n", i);
             i = 0;
             begin = 0;
             sig = detect_sign(seg);
             combine_operators(seg);
-            printf("seg : %s\n", seg);
-            printf("sig : %d\n", sig);
-        } else if ((seg[i] > '9' || seg[i] < '0') && seg[i] != '.' && sig != i)
+        } else if ((seg[i] > '9' || seg[i] < '0') && seg[i] != '.' && sig != i && seg[i] != '-') {
+            printf("SEG = %s\n", seg);
+            printf("I = %d\n", i);
+            printf("SEG LEN = %d\n", my_strlen(seg));
+            printf("SEG 13 = %d\n", seg[13]);
+            printf("SEG I = [%c]\n", seg[i]);
             begin = i + 1;
+        }
     }
-    //printf("INFINI2\n");
     if (operator < 5)
         seg = operator_seeker(seg, seg_lenght, operator + 1);
     return seg;

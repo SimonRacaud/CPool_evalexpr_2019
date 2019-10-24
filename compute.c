@@ -63,16 +63,13 @@ char *compute(char *operation)
     int b;
     int result;
 
-    printf("COMPUTE: %s \n", operation);
     if (idx_op == 84) {
         return (operation);
     }
 
     move_minus(operation);
     a = my_getnbr(operation);
-    printf("A : %d ", a);
     b = my_getnbr(my_strstr(operation + 1, operators[idx_op]) + 1);
-    printf("B : %d\n", b);
     result = OP[idx_op](a, b);
     write_result(operation, result);
     return (operation);
