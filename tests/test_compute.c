@@ -6,7 +6,6 @@
 */
 
 #include  <criterion/criterion.h>
-#include <stdio.h>
 
 char *compute(char *operation);
 
