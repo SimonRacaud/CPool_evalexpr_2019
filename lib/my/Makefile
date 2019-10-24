@@ -16,7 +16,5 @@ $(NAME):
 
 clean:
 	rm -f *.o
-	rm -f $(NAME)
-	rm -f ../../include/my.h
 
 re:	clean all
