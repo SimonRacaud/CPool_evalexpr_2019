@@ -56,6 +56,7 @@ test_parseek:
 
 test_global:
 	gcc -W -g -Wall tests/test_global2.c $(TEST) --coverage -lcriterion -o test.out -L./lib/my -lmy -I./include/ && ./test.out
+	rm test.out
 
 test_oplen:
 	gcc -W -g -Wall tests/test_oplen.c $(TEST) --coverage -lcriterion -o test.out -L./lib\
