@@ -62,7 +62,9 @@ char *make_the_operation(char *seg, int operator, int begin)
     op_lenght = operation_lenght(&seg[begin], operator_list[operator]);
     operation = malloc(op_lenght);
     operation = my_strncpy(operation, &seg[begin], op_lenght);
+    printf("BEFORE OP : %s\n",operation);
     operation = compute(operation);
+    printf("AFTER OP : %s\n",operation);
     seg = replace_operation(seg, operation, begin, op_lenght);
     free(operation);
     operation = NULL;
@@ -95,9 +97,14 @@ char *operator_seeker(char *seg, int seg_lenght, int operator)
             seg = make_the_operation(seg, operator, begin);
             i = 0;
             begin = 0;
+            sig = detect_sign(seg);
+            printf("INFINI\n");
         } else if ((seg[i] > '9' || seg[i] < '0') && seg[i] != '.' && sig != i)
             begin = i + 1;
+        printf("seg : %s\n", seg);
+        printf("sig : %d\n", sig);
     }
+    printf("INFINI2\n");
     if (operator < 5)
         seg = operator_seeker(seg, seg_lenght, operator + 1);
     return seg;

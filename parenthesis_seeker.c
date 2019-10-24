@@ -39,6 +39,7 @@ char *parenthesis_seeker(char *str)
     char *seg;
     int seg_lenght = 0;
 
+    printf("FIRST STR : %s\n", str);
     str = add_parenthesis(str);
     for (int i = 0; i < my_strlen(str); i++) {
         if (str[i] == '(') {
@@ -51,6 +52,7 @@ char *parenthesis_seeker(char *str)
             str = replace_seg(str, seg, open_par, seg_lenght);
             seg = NULL;
             i = -1;
+            printf("STR : %s\n", str);
         }
     }
     free(seg);

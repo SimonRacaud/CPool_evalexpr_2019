@@ -9,9 +9,10 @@
 #include "my.h"
 
 char *parenthesis_seeker(char *str);
+
 void combine_operators(char *expr);
 
-static void move_minus(char *expr_res)
+void move_minus(char *expr_res)
 {
     int i = 0;
 
