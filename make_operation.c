@@ -36,7 +36,7 @@ static void deter_next_char(int *nb_pt, int *nb_bef_op, char *ops, int op_len)
         is_operator(nb_pt, nb_bef_op);
 }
 
-static int operation_lenght(char *ops, char operator)
+int operation_lenght(char *ops, char operator)
 {
     int op_len = 0;
     int op = 0;

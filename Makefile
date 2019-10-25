@@ -44,27 +44,29 @@ fclean:	clean
 
 re:	fclean all
 
+tests_run:	test_global
+
 test_combop:
 	make -C ./lib/my
-	gcc -W -Wall tests/test_combop.c $(TEST) --coverage -lcriterion -L./lib/my -lmy -I./include/ && ./a.out
-	rm ./a.out
+	gcc -o unit_tests1 -W -Wall tests/test_combop.c $(TEST) --coverage -lcriterion -L./lib/my -lmy -I./include/ && ./unit_tests1
+	rm ./unit_tests1
 
 test_compute:
 	make -C ./lib/my
-	gcc -W -g -Wall tests/test_compute.c $(TEST) --coverage -lcriterion -L./lib/my -lmy -I./include/ && ./a.out
-	rm ./a.out
+	gcc -o unit_tests2 -W -g -Wall tests/test_compute.c $(TEST) --coverage -lcriterion -L./lib/my -lmy -I./include/ && ./unit_tests2
+	rm ./unit_tests2
 
 test_parseek:
 	make -C ./lib/my
-	gcc -W -g -Wall tests/test_parseek.c $(TEST) --coverage -lcriterion -L./lib/my -lmy -I./include/ && ./a.out
-	rm ./a.out
+	gcc -o unit_tests3 -W -g -Wall tests/test_parseek.c $(TEST) --coverage -lcriterion -L./lib/my -lmy -I./include/ && ./unit_tests3
+	rm ./unit_tests3
 
 test_global:
 	make -C ./lib/my
-	gcc -W -g -Wall tests/test_global.c $(TEST) --coverage -lcriterion -L./lib/my -lmy -I./include/ && ./a.out
-	rm ./a.out
+	gcc -o unit_tests4 -W -g -Wall tests/test_global.c $(TEST) --coverage -lcriterion -L./lib/my -lmy -I./include/ && ./unit_tests4
+	rm ./unit_tests4
 
 test_oplen:
 	make -C ./lib/my
-	gcc -W -g -Wall tests/test_oplen.c $(TEST) --coverage -lcriterion -L./lib/my -lmy -I./include/ && ./a.out
-	rm ./a.out
+	gcc -o unit_tests5 -W -g -Wall tests/test_oplen.c $(TEST) --coverage -lcriterion -L./lib/my -lmy -I./include/ && ./unit_tests5
+	rm ./unit_tests5

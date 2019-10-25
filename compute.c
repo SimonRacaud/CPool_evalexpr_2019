@@ -35,11 +35,11 @@ static int determine_operator(char *operation)
     }
     for (int i = 0; i < 5; i++) {
         if (my_strstr(operation, operators[idx]) != NULL) {
-            return (idx);
+            break;
         }
         idx++;
     }
-    return (84);
+    return (idx);
 }
 
 static void write_result(char *operation, int result)
@@ -63,9 +63,6 @@ char *compute(char *operation)
     int b;
     int result;
 
-    if (idx_op == 84) {
-        return (operation);
-    }
     move_minus(operation);
     a = my_getnbr(operation);
     b = my_getnbr(my_strstr(operation + 1, operators[idx_op]) + 1);
