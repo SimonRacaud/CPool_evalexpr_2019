@@ -12,6 +12,17 @@ char *compute(char *operation);
 
 int detect_sign(char *seg);
 
+static void is_operator(int *nb_pt, int *nb_bef_op)
+{
+    if (nb_bef_op[0] == 1) {
+        nb_pt[0] = 0;
+        nb_pt[1] = 0;
+    } else {
+        nb_pt[0] = 1;
+        nb_pt[1] = 1;
+    }
+}
+
 static void deter_next_char(int *nb_pt, int *nb_bef_op, char *ops, int op_len)
 {
     if (ops[op_len] <= '9' && ops[op_len] >= '0') {
@@ -21,15 +32,8 @@ static void deter_next_char(int *nb_pt, int *nb_bef_op, char *ops, int op_len)
     } else if (ops[op_len] == '.') {
         nb_pt[0] = 0;
         nb_pt[1] = 1;
-    } else {
-        if (nb_bef_op[0] == 1) {
-            nb_pt[0] = 0;
-            nb_pt[1] = 0;
-        } else {
-            nb_pt[0] = 1;
-            nb_pt[1] = 1;
-        }
-    }
+    } else
+        is_operator(nb_pt, nb_bef_op);
 }
 
 static int operation_lenght(char *ops, char operator)
