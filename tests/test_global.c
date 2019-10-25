@@ -6,6 +6,7 @@
 */
 
 #include  <criterion/criterion.h>
+#include "my.h"
 
 int eval_expr(char const *str);
 
@@ -57,7 +58,6 @@ Test(evalexpr, evalexp6)
     cr_assert(ret == 0);
 }
 
-
 Test(evalexpr, evalexp7)
 {
     char str[23] = "0%0";
@@ -76,7 +76,9 @@ Test(evalexpr, evalexp8)
 
 Test(evalexpr, evalexp9)
 {
-    char *str = "-(12*(13+15/5*(6/(12+14%(30%5+(10*25)-46)+16)-20)/43)*20)*(-(12-98*42)*(16+63-50/3))";
+    char str[85] = "-(12*(13+15/5*(6/(12+14%(30%5+(10*25)-46)+16)-20)/43)*20)";
+    char *str2 = "*(-(12-98*42)*(16+63-50/3))";
+    my_strcat(str, str2);
     int ret = eval_expr(str);
 
     cr_assert(ret == -744629760);
