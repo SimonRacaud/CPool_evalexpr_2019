@@ -30,13 +30,12 @@ int detect_sign(char *seg)
 
 static int is_operator(char *seg, int i, char **op_by_priority, int prio)
 {
-    if (seg[i] == op_by_priority[prio][0]) {
+    if (seg[i] == op_by_priority[prio][0])
         return 1;
-    } else if (seg[i] == op_by_priority[prio][1]) {
+    if (seg[i] == op_by_priority[prio][1])
         return 2;
-    } else if (prio == 0 && seg[i] == op_by_priority[prio][2]) {
+    if (prio == 0 && seg[i] == op_by_priority[prio][2])
         return 3;
-    }
     return 0;
 }
 
