@@ -47,12 +47,14 @@ int operation_lenght(char *ops, char operator)
     if (sign != 0)
         op_len = sign;
     while (nb_point[0] == 1 || nb_point[1] == 1 || op == 0) {
+        op_len++;
         if (ops[op_len] == operator) {
             op++;
             nb_before_op[0] = 0;
         }
-        op_len++;
         deter_next_char(nb_point, nb_before_op, ops, op_len);
+        if (op == 2)
+            break;
     }
     return op_len;
 }

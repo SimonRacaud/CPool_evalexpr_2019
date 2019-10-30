@@ -28,7 +28,7 @@ OBJ	=	$(SRC:.c=.o)
 
 NAME	=	eval_expr
 
-CFLAGS	+= -Wall -Wextra -I./include
+CFLAGS	+= -Wall -Wextra -I./include -g
 
 all:	$(NAME)
 
